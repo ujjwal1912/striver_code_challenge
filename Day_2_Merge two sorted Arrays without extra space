@@ -3,6 +3,26 @@ sorted in non-decreasing order, and two integers m and n,
 representing the number of elements in nums1 and nums2 respectively.
 Merge nums1 and nums2 into a single array sorted in non-decreasing order.
 
+# GAP Method
+def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        for i in range(n):
+            nums1[m+i] = nums2[i]
+        
+        # GAP Method
+        gap = len(nums1)
+        gap = gap//2 + gap%2
+        while gap>0:
+            for i in range(m+n-gap):
+                if i+gap<m+n and nums1[i] > nums1[i+gap]:
+                    nums1[i], nums1[i+gap] = nums1[i+gap], nums1[i]
+            if gap==1:
+                gap = 0
+            gap = (gap // 2) + (gap % 2)
+
+# My method
 def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
         Do not return anything, modify nums1 in-place instead.
@@ -32,3 +52,5 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
                 nums1[i] = nums2[j]
                 nums2[j] = 'x'
                 j+=1
+
+
