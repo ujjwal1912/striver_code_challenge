@@ -17,3 +17,23 @@ def missingAndRepeating(arr, n):
     
     
 # XOR Method
+def missingAndRepeating(arr, n):
+    x, y, xor = 0, 0, arr[0]
+    for i in arr[1:]:
+        xor ^= i
+    for i in range(1, n+1):
+        xor ^= i
+    set_right_bit = xor & ~(xor-1)
+    for i in arr:
+        if i & set_right_bit:
+            x^=i
+        else:
+            y^=i
+    for i in range(1, n+1):
+        if i & set_right_bit:
+            x^=i
+        else:
+            y^=i
+    if x in arr:
+        return int(y), int(x)
+    return int(x), int(y)
