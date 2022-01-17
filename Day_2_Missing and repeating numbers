@@ -1,0 +1,19 @@
+You are given an array of size ‘N’. The elements of the array are in the range from 1 to ‘N’.
+Ideally, the array should contain elements from 1 to ‘N’. But due to some miscalculations, 
+there is a number R in the range [1, N] which appears in the array twice and another number M in the range [1, N] which is missing from the array.
+Your task is to find the missing number (M) and the repeating number (R).
+
+
+# Equation Method
+def missingAndRepeating(arr, n):
+    S = n*(n+1)//2
+    P = n*(n+1)*(2*n+1)//6
+    for i in arr:
+        S -= i
+        P -= i*i
+    missing = (S + P/S)//2
+    repeat = missing - S
+    return int(missing), int(repeat)
+    
+    
+# XOR Method
