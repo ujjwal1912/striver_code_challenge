@@ -14,3 +14,29 @@ def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
             else:
                 i+=1
         return False
+
+
+# Method 2: Binary search
+def bs(mat, l, r, t):
+    if l<=r:
+        mid=l+(r-l)//2
+        m = len(mat)
+        n = len(mat[0])
+        i = mid//n if n!=0 else 0
+        j = mid%n if n!=0 else 0
+        # print(i, j, m, n)
+        if i>m or j>n or i<0 or j<0:
+            return -1
+        if mat[i][j]==t:
+            return i
+        if mat[i][j]>t:
+            return bs(mat, l, mid-1, t)
+        return bs(mat, mid+1, r, t)
+    else:
+        return -1
+class Solution:
+   
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if bs(matrix, 0, len(matrix)*len(matrix[0])-1, target)==-1:
+            return False
+        return True
