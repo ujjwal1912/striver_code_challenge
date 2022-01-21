@@ -1,6 +1,7 @@
 # The majority element is the element that appears more than ⌊n / 2⌋ times.
 # You may assume that the majority element always exists in the array.
 
+# Moore’s Voting Algorithm
 def majorityElement(self, nums: List[int]) -> int:
         me, cnt = nums[0], 1
         for num in nums:
