@@ -38,3 +38,24 @@ def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
           curr = next
 
   return first
+
+
+
+# Simple
+def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+  first = jump = ListNode(val=0)
+  l=r=first.next=head
+
+  while True:
+      cnt=0
+      while r and cnt<k:
+          cnt+=1
+          r=r.next
+      if cnt==k:
+          curr, pre = l, r
+          print(curr.val, pre.val)
+          for _ in range(k):
+              curr.next, curr, pre = pre, curr.next, curr
+          jump.next, jump, l = pre, l, r
+      else:
+          return first.next
